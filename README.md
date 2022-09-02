@@ -1,4 +1,4 @@
-# CombineCocoa
+# CombineCocoa for OpenCombine
 
 <p align="center">
 <img src="https://github.com/freak4pc/CombineCocoa/raw/main/Resources/logo.png" width="45%">
