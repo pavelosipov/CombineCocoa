@@ -7,10 +7,9 @@
 //
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
-import Combine
+import OpenCombine
 import UIKit
 
-@available(iOS 13.0, *)
 public extension UIStepper {
     /// A publisher emitting value changes for this stepper.
     var valuePublisher: AnyPublisher<Double, Never> {

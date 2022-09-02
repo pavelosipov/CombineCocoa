@@ -7,10 +7,9 @@
 //
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
-import Combine
+import OpenCombine
 import UIKit
 
-@available(iOS 13.0, *)
 public extension UIDatePicker {
     /// A publisher emitting date changes from this date picker.
     var datePublisher: AnyPublisher<Date, Never> {

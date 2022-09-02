@@ -8,9 +8,8 @@
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
 import Foundation
-import Combine
+import OpenCombine
 
-@available(iOS 13.0, *)
 internal class DelegateProxyPublisher<Output>: Publisher {
     typealias Failure = Never
 
@@ -26,9 +25,8 @@ internal class DelegateProxyPublisher<Output>: Publisher {
     }
 }
 
-@available(iOS 13.0, *)
 private extension DelegateProxyPublisher {
-    class Subscription<S>: Combine.Subscription where S: Subscriber, Failure == S.Failure, Output == S.Input {
+    class Subscription<S>: OpenCombine.Subscription where S: Subscriber, Failure == S.Failure, Output == S.Input {
         private var subscriber: S?
 
         init(subscriber: S, handler: @escaping (S) -> Void) {

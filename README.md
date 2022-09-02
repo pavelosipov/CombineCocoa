@@ -26,7 +26,7 @@ Check out the [Example in the **Example** folder](https://github.com/freak4pc/Co
 tl;dr: 
 
 ```swift
-import Combine
+import OpenCombine
 import CombineCocoa
 
 textField.textPublisher // AnyPublisher<String, Never>

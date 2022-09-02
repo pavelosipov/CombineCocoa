@@ -7,11 +7,11 @@
 //
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
-import Combine
+import OpenCombine
+import OpenCombineDispatch
 import UIKit
 
 // MARK: - Gesture Publishers
-@available(iOS 13.0, *)
 public extension UITapGestureRecognizer {
     /// A publisher which emits when this Tap Gesture Recognizer is triggered
     var tapPublisher: AnyPublisher<UITapGestureRecognizer, Never> {
@@ -19,7 +19,6 @@ public extension UITapGestureRecognizer {
     }
 }
 
-@available(iOS 13.0, *)
 public extension UIPinchGestureRecognizer {
     /// A publisher which emits when this Pinch Gesture Recognizer is triggered
     var pinchPublisher: AnyPublisher<UIPinchGestureRecognizer, Never> {
@@ -27,7 +26,6 @@ public extension UIPinchGestureRecognizer {
     }
 }
 
-@available(iOS 13.0, *)
 public extension UIRotationGestureRecognizer {
     /// A publisher which emits when this Rotation Gesture Recognizer is triggered
     var rotationPublisher: AnyPublisher<UIRotationGestureRecognizer, Never> {
@@ -35,7 +33,6 @@ public extension UIRotationGestureRecognizer {
     }
 }
 
-@available(iOS 13.0, *)
 public extension UISwipeGestureRecognizer {
     /// A publisher which emits when this Swipe Gesture Recognizer is triggered
     var swipePublisher: AnyPublisher<UISwipeGestureRecognizer, Never> {
@@ -43,7 +40,6 @@ public extension UISwipeGestureRecognizer {
     }
 }
 
-@available(iOS 13.0, *)
 public extension UIPanGestureRecognizer {
     /// A publisher which emits when this Pan Gesture Recognizer is triggered
     var panPublisher: AnyPublisher<UIPanGestureRecognizer, Never> {
@@ -51,7 +47,6 @@ public extension UIPanGestureRecognizer {
     }
 }
 
-@available(iOS 13.0, *)
 public extension UIScreenEdgePanGestureRecognizer {
     /// A publisher which emits when this Screen Edge Gesture Recognizer is triggered
     var screenEdgePanPublisher: AnyPublisher<UIScreenEdgePanGestureRecognizer, Never> {
@@ -59,7 +54,6 @@ public extension UIScreenEdgePanGestureRecognizer {
     }
 }
 
-@available(iOS 13.0, *)
 public extension UILongPressGestureRecognizer {
     /// A publisher which emits when this Long Press Recognizer is triggered
     var longPressPublisher: AnyPublisher<UILongPressGestureRecognizer, Never> {
@@ -71,7 +65,6 @@ public extension UILongPressGestureRecognizer {
 
 // A private generic helper function which returns the provided
 // generic publisher whenever its specific event occurs.
-@available(iOS 13.0, *)
 private func gesturePublisher<Gesture: UIGestureRecognizer>(for gesture: Gesture) -> AnyPublisher<Gesture, Never> {
     Publishers.ControlTarget(control: gesture,
                              addTargetAction: { gesture, target, action in
@@ -80,7 +73,7 @@ private func gesturePublisher<Gesture: UIGestureRecognizer>(for gesture: Gesture
                              removeTargetAction: { gesture, target, action in
                                 gesture?.removeTarget(target, action: action)
                              })
-              .subscribe(on: DispatchQueue.main)
+              .subscribe(on: DispatchQueue.main.ocombine)
               .map { gesture }
               .eraseToAnyPublisher()
 }

@@ -8,13 +8,12 @@
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
 import Foundation
-import Combine
+import OpenCombine
 
 #if canImport(Runtime)
 import Runtime
 #endif
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 open class DelegateProxy: ObjcDelegateProxy {
     private var dict: [Selector: [([Any]) -> Void]] = [:]
     private var subscribers = [AnySubscriber<[Any], Never>?]()

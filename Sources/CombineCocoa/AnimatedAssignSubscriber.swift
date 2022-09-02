@@ -9,11 +9,10 @@
 import Foundation
 
 #if canImport(UIKit) && !(os(iOS) && (arch(i386) || arch(arm)))
-import Combine
+import OpenCombine
 import UIKit
 
 /// A list of animations that can be used with `Publisher.assign(to:on:animation:)`
-@available(iOS 13.0, *)
 public enum AssignTransition {
     public enum Direction {
         case top, bottom, left, right
@@ -29,7 +28,6 @@ public enum AssignTransition {
     case animation(duration: TimeInterval, options: UIView.AnimationOptions, animations: () -> Void, completion: ((Bool) -> Void)?)
 }
 
-@available(iOS 13.0, *)
 public extension Publisher where Self.Failure == Never {
     /// Behaves identically to `Publisher.assign(to:on:)` except that it allows the user to
     /// "wrap" emitting output in an animation transition.

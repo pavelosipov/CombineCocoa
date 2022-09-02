@@ -9,10 +9,9 @@
 #if canImport(UIKit) && !(os(iOS) && (arch(i386) || arch(arm)))
 import Foundation
 import UIKit
-import Combine
+import OpenCombine
 
 // swiftlint:disable force_cast
-@available(iOS 13.0, *)
 public extension UICollectionView {
    /// Combine wrapper for `collectionView(_:didSelectItemAt:)`
     var didSelectItemPublisher: AnyPublisher<IndexPath, Never> {
@@ -78,12 +77,11 @@ public extension UICollectionView {
             .eraseToAnyPublisher()
     }
 
-    override var delegateProxy: DelegateProxy {
+    var delegateProxy: DelegateProxy {
         CollectionViewDelegateProxy.createDelegateProxy(for: self)
     }
 }
 
-@available(iOS 13.0, *)
 private class CollectionViewDelegateProxy: DelegateProxy, UICollectionViewDelegate, DelegateProxyType {
     func setDelegate(to object: UICollectionView) {
         object.delegate = self

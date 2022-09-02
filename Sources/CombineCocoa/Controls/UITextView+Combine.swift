@@ -8,9 +8,8 @@
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
 import UIKit
-import Combine
+import OpenCombine
 
-@available(iOS 13.0, *)
 public extension UITextView {
   /// A Combine publisher for the `UITextView's` value.
   ///

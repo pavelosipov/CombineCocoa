@@ -7,10 +7,9 @@
 //
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
-import Combine
+import OpenCombine
 import UIKit
 
-@available(iOS 13.0, *)
 public extension UITextField {
     /// A publisher emitting any text changes to a this text field.
     var textPublisher: AnyPublisher<String?, Never> {

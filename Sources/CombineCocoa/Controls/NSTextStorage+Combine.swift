@@ -8,9 +8,8 @@
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
 import UIKit
-import Combine
+import OpenCombine
 
-@available(iOS 13.0, *)
 public extension NSTextStorage {
   /// Combine publisher for `NSTextStorageDelegate.textStorage(_:didProcessEditing:range:changeInLength:)`
   var didProcessEditingRangeChangeInLengthPublisher: AnyPublisher<(editedMask: NSTextStorage.EditActions, editedRange: NSRange, delta: Int), Never> {
@@ -34,7 +33,6 @@ public extension NSTextStorage {
   }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private class NSTextStorageDelegateProxy: DelegateProxy, NSTextStorageDelegate, DelegateProxyType {
   func setDelegate(to object: NSTextStorage) {
     object.delegate = self

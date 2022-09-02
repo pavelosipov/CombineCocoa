@@ -9,10 +9,9 @@
 #if canImport(UIKit) && !(os(iOS) && (arch(i386) || arch(arm)))
 import Foundation
 import UIKit
-import Combine
+import OpenCombine
 
 // swiftlint:disable force_cast
-@available(iOS 13.0, *)
 public extension UITableView {
     /// Combine wrapper for `tableView(_:willDisplay:forRowAt:)`
     var willDisplayCellPublisher: AnyPublisher<(cell: UITableViewCell, indexPath: IndexPath), Never> {
@@ -118,12 +117,11 @@ public extension UITableView {
             .eraseToAnyPublisher()
     }
 
-    override var delegateProxy: DelegateProxy {
+    var delegateProxy: DelegateProxy {
         TableViewDelegateProxy.createDelegateProxy(for: self)
     }
 }
 
-@available(iOS 13.0, *)
 private class TableViewDelegateProxy: DelegateProxy, UITableViewDelegate, DelegateProxyType {
     func setDelegate(to object: UITableView) {
         object.delegate = self

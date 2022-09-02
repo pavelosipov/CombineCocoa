@@ -8,10 +8,9 @@
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
 import UIKit
-import Combine
+import OpenCombine
 
 // swiftlint:disable force_cast
-@available(iOS 13.0, *)
 public extension UISearchBar {
     /// Combine wrapper for `UISearchBarDelegate.searchBar(_:textDidChange:)`
     var textDidChangePublisher: AnyPublisher<String, Never> {
@@ -45,7 +44,6 @@ public extension UISearchBar {
     }
 }
 
-@available(iOS 13.0, *)
 private class UISearchBarDelegateProxy: DelegateProxy, UISearchBarDelegate, DelegateProxyType {
     func setDelegate(to object: UISearchBar) {
         object.delegate = self

@@ -7,10 +7,9 @@
 //
 
 #if !(os(iOS) && (arch(i386) || arch(arm)))
-import Combine
+import OpenCombine
 import UIKit
 
-@available(iOS 13.0, *)
 public extension UIButton {
     /// A publisher emitting tap events from this button.
     var tapPublisher: AnyPublisher<Void, Never> {
